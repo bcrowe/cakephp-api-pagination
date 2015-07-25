@@ -1,0 +1,42 @@
+{
+    "name": "bcrowe/cakephp-api-pagination",
+    "description": "This packages provides a CakePHP component that adds pagination to your API responses.",
+    "keywords": [
+        "cakephp", "api", "pagination"
+    ],
+    "homepage": "https://github.com/bcrowe/cakephp-api-pagination",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bryan Crowe",
+            "email": "bryan@bryan-crowe.com",
+            "homepage": "http://bryan-crowe.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.4.16"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BryanCrowe\\ApiPagination\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BryanCrowe\\ApiPagination\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
