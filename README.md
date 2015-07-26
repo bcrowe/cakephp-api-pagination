@@ -1,4 +1,4 @@
-# cakephp-api-pagination
+# CakePhp API Pagination
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,8 +7,8 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This is a simple component for CakePHP 3 which injects pagination information
+from CakePHP's Paginator, into Json and Xml View responses.
 
 ## Install
 
@@ -18,11 +18,23 @@ Via Composer
 $ composer require bcrowe/cakephp-api-pagination
 ```
 
-## Usage
+Then make sure to load the plugin in your application's `bootstrap.php` file.
 
 ``` php
-$skeleton = new BryanCrowe\Skeleton();
-echo $skeleton->echoPhrase('Hello, Bryan!');
+Plugin::load('BryanCrowe/ApiPagination');
+```
+
+## Usage
+
+Load the component in a controller's `initialize()` method:
+
+
+``` php
+public function initialize()
+{
+	parent::initialize();
+	$this->loadComponent('BryanCrowe/ApiPagination');
+}
 ```
 
 ## Change log
