@@ -8,7 +8,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 This is a simple component for CakePHP 3 which injects pagination information
-from CakePHP's Paginator, into Json and Xml View responses.
+from CakePHP's Paginator into serialized JsonView and XmlView responses.
 
 ## Install
 
@@ -18,7 +18,7 @@ Via Composer
 $ composer require bcrowe/cakephp-api-pagination
 ```
 
-Then make sure to load the plugin in your application's `bootstrap.php` file:
+Load the plugin in your application's `bootstrap.php` file:
 
 ``` php
 Plugin::load('BryanCrowe/ApiPagination');
@@ -28,7 +28,6 @@ Plugin::load('BryanCrowe/ApiPagination');
 
 Load the component in a controller's `initialize()` method:
 
-
 ``` php
 public function initialize()
 {
@@ -37,8 +36,8 @@ public function initialize()
 }
 ```
 
-Your responses will now contain the pagination information, and will look
-something like:
+Your JsonView and XmlView responses will now contain the pagination information,
+and will look something like this:
 
 ``` json
 {
@@ -106,8 +105,8 @@ This configuration would yield:
 }
 ```
 
-**Note:** Whenever setting key visibily, use the aliased name if you've given it
-one.
+**Note:** Whenever setting keys' visbility, use the aliased name if you've given
+it one.
 
 ## Change log
 
