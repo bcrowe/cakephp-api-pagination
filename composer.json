@@ -1,9 +1,9 @@
 {
     "name": "bcrowe/cakephp-api-pagination",
-    "description": "This packages provides a CakePHP component that adds pagination to your API responses.",
+    "description": "CakePHP 3 plugin that injects pagination information into API responses.",
     "type": "cakephp-plugin",
     "keywords": [
-        "cakephp", "api", "pagination"
+        "cakephp", "api", "pagination", "cakephp3"
     ],
     "homepage": "https://github.com/bcrowe/cakephp-api-pagination",
     "license": "MIT",
