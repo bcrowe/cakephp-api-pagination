@@ -32,10 +32,82 @@ Load the component in a controller's `initialize()` method:
 ``` php
 public function initialize()
 {
-	parent::initialize();
-	$this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
+    parent::initialize();
+    $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
 }
 ```
+
+Your responses will now contain the pagination information, and will look
+something like:
+
+``` json
+{
+    "articles": ["...", "...", "..."],
+    "pagination": {
+        "finder": "all",
+        "page": 1,
+        "current": 20,
+        "count": 5000,
+        "perPage": 20,
+        "prevPage": false,
+        "nextPage": true,
+        "pageCount": 250,
+        "sort": null,
+        "direction": false,
+        "limit": null,
+        "sortDefault": false,
+        "directionDefault": false
+    }
+}
+```
+
+### Configuring the Pagination Ouput
+
+ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
+
+The `key` configuration key allows you to change the name of the pagination key.
+For instance, if you wanted to change "pagination" to "paging".
+
+The `aliases` configuration key allows you to change names of the pagination
+keys. For instance, if you wanted to change "page" to "currentPage".
+
+The `visible` confiration key allows you to set which pagination keys will be
+visible in your rendered response.
+
+An example using all these configuration keys:
+
+``` php
+$this->loadComponent('BryanCrowe/ApiPagination.ApiPagination', [
+    'key' => 'paging',
+    'aliases' => [
+        'page' => 'currentPage',
+        'current' => 'resultCount'
+    ],
+    'visible' => [
+        'currentPage',
+        'resultCount',
+        'prevPage',
+        'nextPage'
+    ]
+]);
+```
+
+This configuration would yield:
+
+``` json
+{
+    "articles": ["...", "...", "..."],
+    "paging": {
+        "prevPage": false,
+        "nextPage": true,
+        "currentPage": 1,
+        "resultCount": 20
+    }
+}
+```
+
+**Note:** Whenever setting key visibily, use the aliased name if you've given it
+one.
 
 ## Change log
 
