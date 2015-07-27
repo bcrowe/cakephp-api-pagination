@@ -18,7 +18,7 @@ Via Composer
 $ composer require bcrowe/cakephp-api-pagination
 ```
 
-Then make sure to load the plugin in your application's `bootstrap.php` file.
+Then make sure to load the plugin in your application's `bootstrap.php` file:
 
 ``` php
 Plugin::load('BryanCrowe/ApiPagination');
@@ -33,7 +33,7 @@ Load the component in a controller's `initialize()` method:
 public function initialize()
 {
 	parent::initialize();
-	$this->loadComponent('BryanCrowe/ApiPagination');
+	$this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
 }
 ```
 
