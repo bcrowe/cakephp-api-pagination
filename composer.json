@@ -1,6 +1,7 @@
 {
     "name": "bcrowe/cakephp-api-pagination",
     "description": "This packages provides a CakePHP component that adds pagination to your API responses.",
+    "type": "cakephp-plugin",
     "keywords": [
         "cakephp", "api", "pagination"
     ],
