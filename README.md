@@ -70,7 +70,7 @@ For instance, if you wanted to change "pagination" to "paging".
 The `aliases` configuration key allows you to change names of the pagination
 keys. For instance, if you wanted to change "page" to "currentPage".
 
-The `visible` confiration key allows you to set which pagination keys will be
+The `visible` configuration key allows you to set which pagination keys will be
 visible in your rendered response.
 
 An example using all these configuration keys:
@@ -105,8 +105,8 @@ This configuration would yield:
 }
 ```
 
-**Note:** Whenever setting keys' visbility, use the aliased name if you've given
-it one.
+**Note:** Whenever setting keys' visibility, make sure to use the aliased name
+if you've given it one.
 
 ## Change log
 
