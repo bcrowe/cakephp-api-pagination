@@ -52,7 +52,7 @@ class ApiPaginationComponent extends Component
         }
 
         if (!empty($this->config('visible'))) {
-            $this->setVisible();
+            $this->setVisibility();
         }
 
         $controller->set($this->config('key'), $this->paging);
@@ -80,7 +80,7 @@ class ApiPaginationComponent extends Component
      *
      * @return void
      */
-    protected function setVisible()
+    protected function setVisibility()
     {
         $visible = $this->config('visible');
         foreach ($this->paging as $key => $value) {
