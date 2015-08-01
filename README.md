@@ -26,14 +26,12 @@ Plugin::load('BryanCrowe/ApiPagination');
 
 ## Usage
 
-Load the component in a controller's `initialize()` method:
+Make sure your application has been set up to use data views, see http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application.
+
+Then, load `ApiPaginationComponent`:
 
 ``` php
-public function initialize()
-{
-    parent::initialize();
-    $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
-}
+$this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
 ```
 
 Your JsonView and XmlView responses will now contain the pagination information,
