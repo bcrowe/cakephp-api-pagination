@@ -64,14 +64,12 @@ and will look something like this:
 
 ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
 
-The `key` configuration key allows you to change the name of the pagination key.
-For instance, if you wanted to change "pagination" to "paging".
+* `key` allows you to change the name of the pagination key.
 
-The `aliases` configuration key allows you to change names of the pagination
-keys. For instance, if you wanted to change "page" to "currentPage".
+* `aliases` allows you to change names of the pagination detail keys.
 
-The `visible` configuration key allows you to set which pagination keys will be
-visible in your rendered response.
+* `visible` allows you to set which pagination keys will be exposed in the
+response.
 
 An example using all these configuration keys:
 
