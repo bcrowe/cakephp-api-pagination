@@ -67,7 +67,8 @@ ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
 * `aliases` allows you to change names of the pagination detail keys.
 
 * `visible` allows you to set which pagination keys will be exposed in the
-response.
+  response. **Note:** Whenever setting keys' visibility, make sure to use the aliased name
+  if you've given it one.
 
 An example using all these configuration keys:
 
@@ -100,9 +101,6 @@ This configuration would yield:
     }
 }
 ```
-
-**Note:** Whenever setting keys' visibility, make sure to use the aliased name
-if you've given it one.
 
 ## Change log
 
