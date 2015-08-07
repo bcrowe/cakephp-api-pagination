@@ -1,20 +1,24 @@
 # Changelog
 
-All Notable changes to `cakephp-api-pagination` will be documented in this file
+All notable changes to `cakephp-api-pagination` will be documented in this file.
 
-## NEXT - YYYY-MM-DD
+## 0.0.3 - 2015-07-27
 
 ### Added
-- Nothing
-
-### Deprecated
-- Nothing
+- More usage docs.
 
 ### Fixed
-- Nothing
+- Fix operator precedence for checking for ApiPagination-able requests.
 
-### Removed
-- Nothing
+## 0.0.2 - 2015-07-27
 
-### Security
-- Nothing
+### Added
+- A couple README updates.
+
+### Fixed
+- Add "cakephp-plugin" type to composer.json so it actually installs as a CakePHP plugin.
+
+## 0.0.1 - 2015-07-25
+
+### Added
+- Project skeleton and initial version of the ApiPagination component.
