@@ -58,7 +58,7 @@ and will look something like this:
 }
 ```
 
-### Configuring the Pagination Ouput
+### Configuring the Pagination Output
 
 ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
 
@@ -102,7 +102,7 @@ This configuration would yield:
 }
 ```
 
-## Change log
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
