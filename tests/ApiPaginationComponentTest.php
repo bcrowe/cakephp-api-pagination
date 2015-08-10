@@ -43,9 +43,4 @@ class ApiPaginationComponentTest extends TestCase
 
         unset($this->component, $this->controller);
     }
-
-    public function testTrue()
-    {
-        $this->assertTrue(true);
-    }
 }
