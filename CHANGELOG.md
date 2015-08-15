@@ -2,6 +2,17 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 0.0.4 - 2015-08-15
+
+### Added
+- More updates to the README/docs.
+- Renamed the `setVisible` method to` setVisibility`.
+- Started testing.
+- Filled in the changelog.
+
+### Fixed
+- Fixed write/turn fatal error in PHP 5.4.
+
 ## 0.0.3 - 2015-07-27
 
 ### Added
