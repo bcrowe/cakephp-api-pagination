@@ -52,6 +52,8 @@ class ApiPaginationComponentTest extends TestCase
             'visible' => []
         ];
 
-        $this->assertSame($expected, $controller->ApiPagination->config());
+        $result = $controller->ApiPagination->config();
+
+        $this->assertSame($expected, $result);
     }
 }
