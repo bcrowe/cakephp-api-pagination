@@ -46,12 +46,13 @@ class ApiPaginationComponent extends Component
         }
 
         $this->paging = $controller->request->params['paging'][$controller->name];
+        $config = $this->config();
 
-        if (!empty($this->config('aliases'))) {
+        if (!empty($config['aliases'])) {
             $this->setAliases();
         }
 
-        if (!empty($this->config('visible'))) {
+        if (!empty($config['visible'])) {
             $this->setVisibility();
         }
 
