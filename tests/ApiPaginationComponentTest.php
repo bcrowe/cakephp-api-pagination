@@ -4,18 +4,18 @@ namespace BryanCrowe\ApiPagination\Test;
 use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
+use Cake\Core\Plugin;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
+use PHPUnit_Framework_Assert;
+
 
 /**
  * ApiPaginationComponentTest class
  */
 class ApiPaginationComponentTest extends TestCase
 {
-    public $component = null;
-    public $controller = null;
-
     /**
      * setUp method
      *
@@ -24,12 +24,6 @@ class ApiPaginationComponentTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $request = new Request();
-        $response = new Response();
-        $this->controller = new Controller($request, $response);
-        $registry = new ComponentRegistry($this->controller);
-        $this->component = new ApiPaginationComponent($registry);
     }
 
     /**
@@ -42,5 +36,22 @@ class ApiPaginationComponentTest extends TestCase
         parent::tearDown();
 
         unset($this->component, $this->controller);
+    }
+
+    public function testInit()
+    {
+        $request = new Request('/');
+        $response = $this->getMock('Cake\Network\Response');
+
+        $controller = new Controller($request, $response);
+        $controller->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
+
+        $expected = [
+            'key' => 'pagination',
+            'aliases' => [],
+            'visible' => []
+        ];
+
+        $this->assertSame($expected, $controller->ApiPagination->config());
     }
 }

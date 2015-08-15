@@ -30,6 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "BryanCrowe\\ApiPagination\\": "src",
             "BryanCrowe\\ApiPagination\\Test\\": "tests"
         }
     },
