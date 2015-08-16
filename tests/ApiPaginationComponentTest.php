@@ -8,8 +8,6 @@ use Cake\Core\Plugin;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
-use PHPUnit_Framework_Assert;
-
 
 /**
  * ApiPaginationComponentTest class
