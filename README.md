@@ -26,7 +26,7 @@ Plugin::load('BryanCrowe/ApiPagination');
 
 ## Usage
 
-Make sure your application has been set up to use data views, see http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application.
+Make sure your application has been set up to use data views; see the [Enabling Data Views in Your Application](http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application) section of the CakePHP documentation.
 
 Then, load `ApiPaginationComponent`:
 
