@@ -2,6 +2,19 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 0.0.5 - 2015-08-28
+
+### Added
+- Actual tests for ApiPaginationComponent's beforeRender of appropriate
+  view var setting.
+
+### Fixed
+- Updated link to have nice name in README.
+
+### Removed
+- Removed an unused class that was being used in the test case.
+- Old bogus test code.
+
 ## 0.0.4 - 2015-08-15
 
 ### Added
