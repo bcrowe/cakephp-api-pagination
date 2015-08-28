@@ -2,18 +2,12 @@
 namespace BryanCrowe\ApiPagination\Test;
 
 use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
-use Cake\Controller\Controller;
+use BryanCrowe\ApiPagination\TestApp\Controller\ArticlesController;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-
-
-class ArticlesController extends Controller
-{
-    public $components = ['Paginator'];
-}
 
 /**
  * ApiPaginationComponentTest class
