@@ -2,15 +2,10 @@
 namespace BryanCrowe\ApiPagination\Test;
 
 use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
-use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
-use Cake\Routing\DispatcherFactory;
-use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
