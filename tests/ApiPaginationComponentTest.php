@@ -5,6 +5,7 @@ use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
 use Cake\Core\Plugin;
+use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
@@ -32,26 +33,16 @@ class ApiPaginationComponentTest extends TestCase
     public function tearDown()
     {
         parent::tearDown();
-
-        unset($this->component, $this->controller);
     }
 
-    public function testInit()
+    public function testNonApiPaginatedRequest()
     {
         $request = new Request('/');
         $response = $this->getMock('Cake\Network\Response');
-
         $controller = new Controller($request, $response);
-        $controller->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
+        $apiPaginationComponent = new ApiPaginationComponent($controller->components());
+        $event = new Event('Controller.beforeRender', $controller);
 
-        $expected = [
-            'key' => 'pagination',
-            'aliases' => [],
-            'visible' => []
-        ];
-
-        $result = $controller->ApiPagination->config();
-
-        $this->assertSame($expected, $result);
+        $this->assertNull($apiPaginationComponent->beforeRender($event));
     }
 }
