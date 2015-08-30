@@ -34,6 +34,17 @@ Then, load `ApiPaginationComponent`:
 $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
 ```
 
+Then, go ahead and set your paginated view variable like so:
+
+``` php
+$this->set('articles', $this->paginate($this->Articles));
+$this->set('_serialize', ['articles']);
+```
+
+**Note:** It is important that your `_serialize` variable is an array, e.g.
+`['articles']`, so that your pagination information can be set under its own
+pagination key.
+
 Your JsonView and XmlView responses will now contain the pagination information,
 and will look something like this:
 
