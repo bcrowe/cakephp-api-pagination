@@ -78,4 +78,107 @@ class ApiPaginationComponentTest extends TestCase
 
         $this->assertSame($expected, $result);
     }
+
+    public function testVisibilitySettings()
+    {
+        $request = new Request('/articles');
+        $request->env('HTTP_ACCEPT', 'application/json');
+        $response = $this->getMock('Cake\Network\Response');
+        $controller = new ArticlesController($request, $response);
+        $controller->set('data', $controller->paginate($this->Articles));
+        $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
+            'visible' => [
+                'page',
+                'current',
+                'count',
+                'prevPage',
+                'nextPage',
+                'pageCount'
+            ]
+        ]);
+        $event = new Event('Controller.beforeRender', $controller);
+        $apiPaginationComponent->beforeRender($event);
+
+        $result = $apiPaginationComponent->_registry->getController()->viewVars['pagination'];
+        $expected = [
+            'page' => 1,
+            'current' => 20,
+            'count' => 23,
+            'prevPage' => false,
+            'nextPage' => true,
+            'pageCount' => 2
+        ];
+
+        $this->assertSame($expected, $result);
+    }
+
+    public function testAliasSettings()
+    {
+        $request = new Request('/articles');
+        $request->env('HTTP_ACCEPT', 'application/json');
+        $response = $this->getMock('Cake\Network\Response');
+        $controller = new ArticlesController($request, $response);
+        $controller->set('data', $controller->paginate($this->Articles));
+        $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
+            'aliases' => [
+                'page' => 'curPage',
+                'current' => 'currentCount',
+                'count' => 'totalCount',
+            ]
+        ]);
+        $event = new Event('Controller.beforeRender', $controller);
+        $apiPaginationComponent->beforeRender($event);
+
+        $result = $apiPaginationComponent->_registry->getController()->viewVars['pagination'];
+        $expected = [
+            'finder' => 'all',
+            'perPage' => 20,
+            'prevPage' => false,
+            'nextPage' => true,
+            'pageCount' => 2,
+            'sort' => null,
+            'direction' => false,
+            'limit' => null,
+            'sortDefault' => false,
+            'directionDefault' => false,
+            'curPage' => 1,
+            'currentCount' => 20,
+            'totalCount' => 23,
+        ];
+
+        $this->assertSame($expected, $result);
+    }
+
+    public function testKeySetting()
+    {
+        $request = new Request('/articles');
+        $request->env('HTTP_ACCEPT', 'application/json');
+        $response = $this->getMock('Cake\Network\Response');
+        $controller = new ArticlesController($request, $response);
+        $controller->set('data', $controller->paginate($this->Articles));
+        $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
+            'key' => 'paging'
+        ]);
+        $event = new Event('Controller.beforeRender', $controller);
+        $apiPaginationComponent->beforeRender($event);
+
+        $result = $apiPaginationComponent->_registry->getController()->viewVars['paging'];
+        $expected = [
+            'finder' => 'all',
+            'page' => 1,
+            'current' => 20,
+            'count' => 23,
+            'perPage' => 20,
+            'prevPage' => false,
+            'nextPage' => true,
+            'pageCount' => 2,
+            'sort' => null,
+            'direction' => false,
+            'limit' => null,
+            'sortDefault' => false,
+            'directionDefault' => false
+        ];
+
+        $this->assertSame($expected, $result);
+    }
 }
