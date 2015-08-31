@@ -181,4 +181,40 @@ class ApiPaginationComponentTest extends TestCase
 
         $this->assertSame($expected, $result);
     }
+
+    public function testAllSettings()
+    {
+        $request = new Request('/articles');
+        $request->env('HTTP_ACCEPT', 'application/json');
+        $response = $this->getMock('Cake\Network\Response');
+        $controller = new ArticlesController($request, $response);
+        $controller->set('data', $controller->paginate($this->Articles));
+        $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
+            'key' => 'fun',
+            'aliases' => [
+                'page' => 'currentPage',
+                'count' => 'totalCount',
+                'limit' => 'unusedAlias'
+            ],
+            'visible' => [
+                'currentPage',
+                'totalCount',
+                'limit',
+                'prevPage',
+                'nextPage'
+            ]
+        ]);
+        $event = new Event('Controller.beforeRender', $controller);
+        $apiPaginationComponent->beforeRender($event);
+
+        $result = $apiPaginationComponent->_registry->getController()->viewVars['fun'];
+        $expected = [
+            'prevPage' => false,
+            'nextPage' => true,
+            'currentPage' => 1,
+            'totalCount' => 23,
+        ];
+
+        $this->assertSame($expected, $result);
+    }
 }
