@@ -23,6 +23,8 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function setUp()
     {
+        $this->request = new Request('/articles');
+        $this->response = $this->getMock('Cake\Network\Response');
         $this->Articles = TableRegistry::get('BryanCrowe/ApiPagination.Articles', ['table' => 'bryancrowe_articles']);
         parent::setUp();
     }
@@ -39,9 +41,7 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testNonApiPaginatedRequest()
     {
-        $request = new Request('/articles');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $controller = new ArticlesController($this->request, $this->response);
         $apiPaginationComponent = new ApiPaginationComponent($controller->components());
         $event = new Event('Controller.beforeRender', $controller);
 
@@ -50,10 +50,8 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testDefaultPaginationSettings()
     {
-        $request = new Request('/articles');
-        $request->env('HTTP_ACCEPT', 'application/json');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $controller = new ArticlesController($this->request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components());
         $event = new Event('Controller.beforeRender', $controller);
@@ -81,10 +79,8 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testVisibilitySettings()
     {
-        $request = new Request('/articles');
-        $request->env('HTTP_ACCEPT', 'application/json');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $controller = new ArticlesController($this->request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
             'visible' => [
@@ -114,10 +110,8 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testAliasSettings()
     {
-        $request = new Request('/articles');
-        $request->env('HTTP_ACCEPT', 'application/json');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $controller = new ArticlesController($this->request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
             'aliases' => [
@@ -151,10 +145,8 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testKeySetting()
     {
-        $request = new Request('/articles');
-        $request->env('HTTP_ACCEPT', 'application/json');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $controller = new ArticlesController($this->request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
             'key' => 'paging'
@@ -186,8 +178,7 @@ class ApiPaginationComponentTest extends TestCase
     {
         $request = new Request('/articles');
         $request->env('HTTP_ACCEPT', 'application/json');
-        $response = $this->getMock('Cake\Network\Response');
-        $controller = new ArticlesController($request, $response);
+        $controller = new ArticlesController($request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
             'key' => 'fun',
