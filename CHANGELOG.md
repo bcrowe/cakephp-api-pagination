@@ -2,6 +2,13 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 0.0.6 - 2015-09-01
+
+### Added
+- 100% coverage in tests.
+- Added an example of setting view variables to be explicit on beforeRender's
+  expectations.
+
 ## 0.0.5 - 2015-08-28
 
 ### Added
