@@ -176,9 +176,8 @@ class ApiPaginationComponentTest extends TestCase
 
     public function testAllSettings()
     {
-        $request = new Request('/articles');
-        $request->env('HTTP_ACCEPT', 'application/json');
-        $controller = new ArticlesController($request, $this->response);
+        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $controller = new ArticlesController($this->request, $this->response);
         $controller->set('data', $controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($controller->components(), [
             'key' => 'fun',
