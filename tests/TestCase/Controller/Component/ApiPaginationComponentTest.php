@@ -39,6 +39,11 @@ class ApiPaginationComponentTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Test that a non API or paginated request returns null.
+     *
+     * @return void
+     */
     public function testNonApiPaginatedRequest()
     {
         $controller = new ArticlesController($this->request, $this->response);
@@ -48,6 +53,12 @@ class ApiPaginationComponentTest extends TestCase
         $this->assertNull($apiPaginationComponent->beforeRender($event));
     }
 
+    /**
+     * Test the expected pagination information for the component's default
+     * config.
+     *
+     * @return void
+     */
     public function testDefaultPaginationSettings()
     {
         $this->request->env('HTTP_ACCEPT', 'application/json');
@@ -77,6 +88,11 @@ class ApiPaginationComponentTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    /**
+     * Test that visibility-only correctly sets the visible keys.
+     *
+     * @return void
+     */
     public function testVisibilitySettings()
     {
         $this->request->env('HTTP_ACCEPT', 'application/json');
@@ -108,6 +124,11 @@ class ApiPaginationComponentTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    /**
+     * Test that alias-only correctly sets aliases the keys.
+     *
+     * @return void
+     */
     public function testAliasSettings()
     {
         $this->request->env('HTTP_ACCEPT', 'application/json');
@@ -143,6 +164,11 @@ class ApiPaginationComponentTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    /**
+     * Test that key-only correctly sets the pagination key.
+     *
+     * @return void
+     */
     public function testKeySetting()
     {
         $this->request->env('HTTP_ACCEPT', 'application/json');
@@ -174,6 +200,11 @@ class ApiPaginationComponentTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    /**
+     * Test that all settings being used together work correctly.
+     *
+     * @return void
+     */
     public function testAllSettings()
     {
         $this->request->env('HTTP_ACCEPT', 'application/json');
