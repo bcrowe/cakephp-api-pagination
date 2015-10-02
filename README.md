@@ -26,7 +26,9 @@ Plugin::load('BryanCrowe/ApiPagination');
 
 ## Usage
 
-Make sure your application has been set up to use data views; see the [Enabling Data Views in Your Application](http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application) section of the CakePHP documentation.
+Make sure your application has been set up to use data views; see the
+[Enabling Data Views in Your Application][link-dataviews] section of the CakePHP
+documentation.
 
 Then, load `ApiPaginationComponent`:
 
@@ -78,8 +80,8 @@ ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
 * `aliases` allows you to change names of the pagination detail keys.
 
 * `visible` allows you to set which pagination keys will be exposed in the
-  response. **Note:** Whenever setting keys' visibility, make sure to use the aliased name
-  if you've given it one.
+  response. **Note:** Whenever setting a key's visibility, make sure to use the
+  aliased name if you've given it one.
 
 An example using all these configuration keys:
 
@@ -115,7 +117,8 @@ This configuration would yield:
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed
+recently.
 
 ## Testing
 
@@ -129,7 +132,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email bryan@bryan-crowe.com instead of using the issue tracker.
+If you discover any security related issues, please email bryan@bryan-crowe.com
+instead of using the issue tracker.
 
 ## Credits
 
@@ -138,7 +142,8 @@ If you discover any security related issues, please email bryan@bryan-crowe.com 
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more
+information.
 
 [ico-version]: https://img.shields.io/packagist/v/bcrowe/cakephp-api-pagination.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
@@ -154,3 +159,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-downloads]: https://packagist.org/packages/bcrowe/cakephp-api-pagination
 [link-author]: https://github.com/bcrowe
 [link-contributors]: ../../contributors
+[link-dataviews]: http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application
