@@ -2,7 +2,7 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
-## 0.0.7 - 3015-10-18
+## 0.0.7 - 2015-10-18
 - Add some additional docs.
 - Clean up tests a bit.
 - Added CONDUCT.md
