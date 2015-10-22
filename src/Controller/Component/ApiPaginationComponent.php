@@ -28,7 +28,7 @@ class ApiPaginationComponent extends Component
      *
      * @var array
      */
-    protected $paging = [];
+    protected $pagingInfo = [];
 
     /**
      * Injects the pagination info into the response if the current request is a
@@ -45,7 +45,7 @@ class ApiPaginationComponent extends Component
             return;
         }
 
-        $this->paging = $controller->request->params['paging'][$controller->name];
+        $this->pagingInfo = $controller->request->params['paging'][$controller->name];
         $config = $this->config();
 
         if (!empty($config['aliases'])) {
@@ -56,7 +56,7 @@ class ApiPaginationComponent extends Component
             $this->setVisibility();
         }
 
-        $controller->set($this->config('key'), $this->paging);
+        $controller->set($this->config('key'), $this->pagingInfo);
         $controller->viewVars['_serialize'][] = $this->config('key');
     }
 
@@ -70,8 +70,8 @@ class ApiPaginationComponent extends Component
     {
         $aliases = $this->config('aliases');
         foreach ($aliases as $key => $value) {
-            $this->paging[$value] = $this->paging[$key];
-            unset($this->paging[$key]);
+            $this->pagingInfo[$value] = $this->pagingInfo[$key];
+            unset($this->pagingInfo[$key]);
         }
     }
 
@@ -84,9 +84,9 @@ class ApiPaginationComponent extends Component
     protected function setVisibility()
     {
         $visible = $this->config('visible');
-        foreach ($this->paging as $key => $value) {
+        foreach ($this->pagingInfo as $key => $value) {
             if (!in_array($key, $visible)) {
-                unset($this->paging[$key]);
+                unset($this->pagingInfo[$key]);
             }
         }
     }
