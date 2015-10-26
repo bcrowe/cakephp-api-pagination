@@ -3,9 +3,15 @@
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
 ## 0.0.7 - 2015-10-18
+
+### Added
 - Add some additional docs.
-- Clean up tests a bit.
 - Added CONDUCT.md
+
+### Fixed
+- Clean up tests a bit.
+
+### Removed
 - Remove running tests in CS build.
 
 ## 0.0.6 - 2015-09-01
