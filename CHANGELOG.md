@@ -2,6 +2,12 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 0.0.8 - 2015-10-28
+
+### Fixed
+- Better property name for paging info.
+- Fixed up formatting in changelog.
+
 ## 0.0.7 - 2015-10-18
 
 ### Added
