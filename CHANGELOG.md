@@ -2,6 +2,14 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 0.0.9 - 2015-11-22
+
+### Added
+- Added implementedEvents method to component.
+
+### Fixed
+- Clean up markdown files.
+
 ## 0.0.8 - 2015-10-28
 
 ### Fixed
