@@ -66,8 +66,8 @@ class ApiPaginationComponent extends Component
             $this->setVisibility();
         }
 
-        $controller->set($this->config('key'), $this->pagingInfo);
-        $controller->viewVars['_serialize'][] = $this->config('key');
+        $controller->set($config['key'], $this->pagingInfo);
+        $controller->viewVars['_serialize'][] = $config['key'];
     }
 
     /**
