@@ -2,6 +2,14 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 1.0.0 - 2015-12-06
+
+### Added
+- Release stable!
+
+### Fixed
+- Use an already available local config var.
+
 ## 0.0.9 - 2015-11-22
 
 ### Added
