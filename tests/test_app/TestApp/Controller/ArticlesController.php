@@ -5,5 +5,9 @@ use Cake\Controller\Controller;
 
 class ArticlesController extends Controller
 {
-    public $components = ['Paginator'];
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+    }
 }
