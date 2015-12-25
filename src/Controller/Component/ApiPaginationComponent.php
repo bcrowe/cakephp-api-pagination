@@ -78,8 +78,7 @@ class ApiPaginationComponent extends Component
      */
     protected function setAliases()
     {
-        $aliases = $this->config('aliases');
-        foreach ($aliases as $key => $value) {
+        foreach ($this->config('aliases') as $key => $value) {
             $this->pagingInfo[$value] = $this->pagingInfo[$key];
             unset($this->pagingInfo[$key]);
         }
