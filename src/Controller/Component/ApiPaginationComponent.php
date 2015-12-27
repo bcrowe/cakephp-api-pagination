@@ -49,13 +49,11 @@ class ApiPaginationComponent extends Component
      */
     public function beforeRender(Event $event)
     {
-        $controller = $event->subject();
-
-        if (!$this->isPaginatedApiRequest($controller)) {
+        if (!$this->isPaginatedApiRequest()) {
             return;
         }
 
-        $this->pagingInfo = $controller->request->params['paging'][$controller->name];
+        $this->pagingInfo = $this->request->params['paging'][$event->subject()->name];
         $config = $this->config();
 
         if (!empty($config['aliases'])) {
@@ -66,8 +64,8 @@ class ApiPaginationComponent extends Component
             $this->setVisibility();
         }
 
-        $controller->set($config['key'], $this->pagingInfo);
-        $controller->viewVars['_serialize'][] = $config['key'];
+        $event->subject()->set($config['key'], $this->pagingInfo);
+        $event->subject()->viewVars['_serialize'][] = $config['key'];
     }
 
     /**
@@ -104,14 +102,12 @@ class ApiPaginationComponent extends Component
      * Checks whether the current request is a JSON or XML request with
      * pagination.
      *
-     * @param \Cake\Controller\Controller $controller A reference to the
-     *   instantiating controller object
      * @return bool True if JSON or XML with paging, otherwise false.
      */
-    protected function isPaginatedApiRequest(Controller $controller)
+    protected function isPaginatedApiRequest()
     {
-        if (isset($controller->request->params['paging']) &&
-            $controller->request->is(['json', 'xml'])
+        if (isset($this->request->params['paging']) &&
+            $this->request->is(['json', 'xml'])
         ) {
             return true;
         }
