@@ -49,11 +49,13 @@ class ApiPaginationComponent extends Component
      */
     public function beforeRender(Event $event)
     {
+        $subject = $event->subject();
+
         if (!$this->isPaginatedApiRequest()) {
             return;
         }
 
-        $this->pagingInfo = $this->request->params['paging'][$event->subject()->name];
+        $this->pagingInfo = $this->request->params['paging'][$subject->name];
         $config = $this->config();
 
         if (!empty($config['aliases'])) {
@@ -64,8 +66,8 @@ class ApiPaginationComponent extends Component
             $this->setVisibility();
         }
 
-        $event->subject()->set($config['key'], $this->pagingInfo);
-        $event->subject()->viewVars['_serialize'][] = $config['key'];
+        $subject->set($config['key'], $this->pagingInfo);
+        $subject->viewVars['_serialize'][] = $config['key'];
     }
 
     /**
