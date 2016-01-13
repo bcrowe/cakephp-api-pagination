@@ -48,12 +48,11 @@ class ApiPaginationComponent extends Component
      */
     public function beforeRender(Event $event)
     {
-        $subject = $event->subject();
-
         if (!$this->isPaginatedApiRequest()) {
             return;
         }
 
+        $subject = $event->subject();
         $this->pagingInfo = $this->request->params['paging'][$subject->name];
         $config = $this->config();
 
