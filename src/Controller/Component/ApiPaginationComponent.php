@@ -23,7 +23,7 @@ class ApiPaginationComponent extends Component
     ];
 
     /**
-     * Holds the paging information.
+     * Holds the paging information array from the request.
      *
      * @var array
      */
@@ -43,7 +43,7 @@ class ApiPaginationComponent extends Component
      * Injects the pagination info into the response if the current request is a
      * JSON or XML request with pagination.
      *
-     * @param Event $event The Controller.beforeRender event.
+     * @param \Cake\Event\Event $event The Controller.beforeRender event.
      * @return void
      */
     public function beforeRender(Event $event)
