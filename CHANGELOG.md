@@ -2,6 +2,13 @@
 
 All notable changes to `cakephp-api-pagination` will be documented in this file.
 
+## 1.0.1 - 2016-03-10
+
+- General code clean up.
+- Updated docblocks.
+- Set composer versions with tildes.
+- Clean up tests.
+
 ## 1.0.0 - 2015-12-06
 
 ### Added
