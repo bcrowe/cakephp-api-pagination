@@ -41,18 +41,6 @@ class ApiPaginationComponentTest extends TestCase
     }
 
     /**
-     * Simple test to check if implementedEvents returns an empty array.
-     */
-    public function testImplementedEvents()
-    {
-        $apiPaginationComponent = new ApiPaginationComponent($this->controller->components());
-        $result = $apiPaginationComponent->implementedEvents();
-        $expected = [];
-
-        $this->assertSame($expected, $result);
-    }
-
-    /**
      * Test that a non API or paginated request returns null.
      *
      * @return void
