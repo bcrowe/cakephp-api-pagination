@@ -30,16 +30,6 @@ class ApiPaginationComponent extends Component
     protected $pagingInfo = [];
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array
-     */
-    public function implementedEvents()
-    {
-        return [];
-    }
-
-    /**
      * Injects the pagination info into the response if the current request is a
      * JSON or XML request with pagination.
      *
