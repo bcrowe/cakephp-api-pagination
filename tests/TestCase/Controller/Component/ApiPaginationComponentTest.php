@@ -4,13 +4,15 @@ namespace BryanCrowe\ApiPagination\Test;
 use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
 use BryanCrowe\ApiPagination\TestApp\Controller\ArticlesController;
 use Cake\Event\Event;
-use Cake\Network\Request;
-use Cake\Network\Response;
+use Cake\Http\ServerRequest as Request;
+use Cake\Http\Response;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
  * ApiPaginationComponentTest class
+ *
+ * @property ArticlesController $controller
  */
 class ApiPaginationComponentTest extends TestCase
 {
@@ -24,7 +26,7 @@ class ApiPaginationComponentTest extends TestCase
     public function setUp()
     {
         $this->request = new Request('/articles');
-        $this->response = $this->getMock('Cake\Network\Response');
+        $this->response = $this->createMock('Cake\Http\Response');
         $this->controller = new ArticlesController($this->request, $this->response);
         $this->Articles = TableRegistry::get('BryanCrowe/ApiPagination.Articles', ['table' => 'bryancrowe_articles']);
         parent::setUp();
@@ -61,7 +63,7 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testDefaultPaginationSettings()
     {
-        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components());
         $event = new Event('Controller.beforeRender', $this->controller);
@@ -81,7 +83,9 @@ class ApiPaginationComponentTest extends TestCase
             'direction' => false,
             'limit' => null,
             'sortDefault' => false,
-            'directionDefault' => false
+            'directionDefault' => false,
+            'scope' => null,
+            'completeSort' => []
         ];
 
         $this->assertSame($expected, $result);
@@ -94,7 +98,7 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testVisibilitySettings()
     {
-        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'visible' => [
@@ -129,7 +133,7 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testAliasSettings()
     {
-        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'aliases' => [
@@ -153,6 +157,8 @@ class ApiPaginationComponentTest extends TestCase
             'limit' => null,
             'sortDefault' => false,
             'directionDefault' => false,
+            'scope' => null,
+            'completeSort' => [],
             'curPage' => 1,
             'currentCount' => 20,
             'totalCount' => 23,
@@ -168,7 +174,7 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testKeySetting()
     {
-        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'key' => 'paging'
@@ -190,7 +196,9 @@ class ApiPaginationComponentTest extends TestCase
             'direction' => false,
             'limit' => null,
             'sortDefault' => false,
-            'directionDefault' => false
+            'directionDefault' => false,
+            'scope' => null,
+            'completeSort' => []
         ];
 
         $this->assertSame($expected, $result);
@@ -203,7 +211,7 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testAllSettings()
     {
-        $this->request->env('HTTP_ACCEPT', 'application/json');
+        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'key' => 'fun',

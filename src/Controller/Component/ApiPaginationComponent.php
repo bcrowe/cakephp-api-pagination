@@ -42,9 +42,9 @@ class ApiPaginationComponent extends Component
             return;
         }
 
-        $subject = $event->subject();
-        $this->pagingInfo = $this->request->params['paging'][$subject->name];
-        $config = $this->config();
+        $subject = $event->getSubject();
+        $this->pagingInfo = $this->request->getParam('paging')[$subject->getName()];
+        $config = $this->getConfig();
 
         if (!empty($config['aliases'])) {
             $this->setAliases();
@@ -66,7 +66,7 @@ class ApiPaginationComponent extends Component
      */
     protected function setAliases()
     {
-        foreach ($this->config('aliases') as $key => $value) {
+        foreach ($this->getConfig('aliases') as $key => $value) {
             $this->pagingInfo[$value] = $this->pagingInfo[$key];
             unset($this->pagingInfo[$key]);
         }
@@ -80,7 +80,7 @@ class ApiPaginationComponent extends Component
      */
     protected function setVisibility()
     {
-        $visible = $this->config('visible');
+        $visible = $this->getConfig('visible');
         foreach ($this->pagingInfo as $key => $value) {
             if (!in_array($key, $visible)) {
                 unset($this->pagingInfo[$key]);
@@ -96,7 +96,7 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if (isset($this->request->params['paging']) &&
+        if ($this->request->getParam('paging') &&
             $this->request->is(['json', 'xml'])
         ) {
             return true;
