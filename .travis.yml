@@ -22,7 +22,7 @@ before_script:
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
-  - sh -c "if [ '$RUN_TESTS' = '1' ]; then phpunit --coverage-text --coverage-clover=coverage.clover; fi"
+  - sh -c "if [ '$RUN_TESTS' = '1' ]; then vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi"
   - sh -c "if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p -n --extensions=php --standard=psr2 ./src ./tests; fi"
 
 after_script:
