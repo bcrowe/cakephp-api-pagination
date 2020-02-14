@@ -23,9 +23,9 @@ class ApiPaginationComponentTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $this->request = new Request('/articles');
+        $this->request = new Request(['url' => '/articles']);
         $this->response = $this->createMock('Cake\Http\Response');
         $this->controller = new ArticlesController($this->request, $this->response);
         $this->Articles = TableRegistry::get('BryanCrowe/ApiPagination.Articles', ['table' => 'bryancrowe_articles']);
@@ -37,7 +37,7 @@ class ApiPaginationComponentTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }
@@ -63,29 +63,34 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testDefaultPaginationSettings()
     {
-        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
+        $this->controller->setRequest(
+            $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
+        );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components());
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
-        $result = $apiPaginationComponent->_registry->getController()->viewVars['pagination'];
+        $result = $apiPaginationComponent->getController()->viewBuilder()->getVar('pagination');
         $expected = [
-            'finder' => 'all',
-            'page' => 1,
-            'current' => 20,
             'count' => 23,
+            'current' => 20,
             'perPage' => 20,
+            'page' => 1,
+            'requestedPage' => 1,
+            'pageCount' => 2,
+            'start' => 1,
+            'end' => 20,
             'prevPage' => false,
             'nextPage' => true,
-            'pageCount' => 2,
             'sort' => null,
-            'direction' => false,
-            'limit' => null,
+            'direction' => null,
             'sortDefault' => false,
             'directionDefault' => false,
+            'completeSort' => [],
+            'limit' => null,
             'scope' => null,
-            'completeSort' => []
+            'finder' => 'all',
         ];
 
         $this->assertSame($expected, $result);
@@ -98,7 +103,9 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testVisibilitySettings()
     {
-        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
+        $this->controller->setRequest(
+            $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
+        );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'visible' => [
@@ -113,14 +120,14 @@ class ApiPaginationComponentTest extends TestCase
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
-        $result = $apiPaginationComponent->_registry->getController()->viewVars['pagination'];
+        $result = $apiPaginationComponent->getController()->viewBuilder()->getVar('pagination');
         $expected = [
-            'page' => 1,
-            'current' => 20,
             'count' => 23,
+            'current' => 20,
+            'page' => 1,
+            'pageCount' => 2,
             'prevPage' => false,
             'nextPage' => true,
-            'pageCount' => 2
         ];
 
         $this->assertSame($expected, $result);
@@ -133,7 +140,9 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testAliasSettings()
     {
-        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
+        $this->controller->setRequest(
+            $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
+        );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'aliases' => [
@@ -145,20 +154,23 @@ class ApiPaginationComponentTest extends TestCase
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
-        $result = $apiPaginationComponent->_registry->getController()->viewVars['pagination'];
+        $result = $apiPaginationComponent->getController()->viewBuilder()->getVar('pagination');
         $expected = [
-            'finder' => 'all',
             'perPage' => 20,
+            'requestedPage' => 1,
+            'pageCount' => 2,
+            'start' => 1,
+            'end' => 20,
             'prevPage' => false,
             'nextPage' => true,
-            'pageCount' => 2,
             'sort' => null,
-            'direction' => false,
-            'limit' => null,
+            'direction' => null,
             'sortDefault' => false,
             'directionDefault' => false,
-            'scope' => null,
             'completeSort' => [],
+            'limit' => null,
+            'scope' => null,
+            'finder' => 'all',
             'curPage' => 1,
             'currentCount' => 20,
             'totalCount' => 23,
@@ -174,7 +186,9 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testKeySetting()
     {
-        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
+        $this->controller->setRequest(
+            $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
+        );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'key' => 'paging'
@@ -182,23 +196,26 @@ class ApiPaginationComponentTest extends TestCase
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
-        $result = $apiPaginationComponent->_registry->getController()->viewVars['paging'];
+        $result = $apiPaginationComponent->getController()->viewBuilder()->getVar('paging');
         $expected = [
-            'finder' => 'all',
-            'page' => 1,
-            'current' => 20,
             'count' => 23,
+            'current' => 20,
             'perPage' => 20,
+            'page' => 1,
+            'requestedPage' => 1,
+            'pageCount' => 2,
+            'start' => 1,
+            'end' => 20,
             'prevPage' => false,
             'nextPage' => true,
-            'pageCount' => 2,
             'sort' => null,
-            'direction' => false,
-            'limit' => null,
+            'direction' => null,
             'sortDefault' => false,
             'directionDefault' => false,
+            'completeSort' => [],
+            'limit' => null,
             'scope' => null,
-            'completeSort' => []
+            'finder' => 'all',
         ];
 
         $this->assertSame($expected, $result);
@@ -211,7 +228,9 @@ class ApiPaginationComponentTest extends TestCase
      */
     public function testAllSettings()
     {
-        $this->controller->request = $this->controller->request->withEnv('HTTP_ACCEPT', 'application/json');
+        $this->controller->setRequest(
+            $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
+        );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
             'key' => 'fun',
@@ -231,7 +250,7 @@ class ApiPaginationComponentTest extends TestCase
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
-        $result = $apiPaginationComponent->_registry->getController()->viewVars['fun'];
+        $result = $apiPaginationComponent->getController()->viewBuilder()->getVar('fun');
         $expected = [
             'prevPage' => false,
             'nextPage' => true,

@@ -43,7 +43,7 @@ class ApiPaginationComponent extends Component
         }
 
         $subject = $event->getSubject();
-        $this->pagingInfo = $this->request->getParam('paging')[$subject->getName()];
+        $this->pagingInfo = $this->getController()->getRequest()->getAttribute('paging')[$subject->getName()];
         $config = $this->getConfig();
 
         if (!empty($config['aliases'])) {
@@ -55,7 +55,9 @@ class ApiPaginationComponent extends Component
         }
 
         $subject->set($config['key'], $this->pagingInfo);
-        $subject->viewVars['_serialize'][] = $config['key'];
+        $data = $subject->viewBuilder()->getVar('_serialize') ?? [];
+        $data[] = $config['key'];
+        $subject->set('_serialize', $data);
     }
 
     /**
@@ -96,8 +98,8 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if ($this->request->getParam('paging') &&
-            $this->request->is(['json', 'xml'])
+        if ($this->getController()->getRequest()->getAttribute('paging') &&
+            $this->getController()->getRequest()->is(['json', 'xml'])
         ) {
             return true;
         }
