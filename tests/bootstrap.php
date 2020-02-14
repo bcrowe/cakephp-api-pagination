@@ -13,7 +13,7 @@ $root = $findRoot(__FILE__);
 unset($findRoot);
 chdir($root);
 if (file_exists($root . '/config/bootstrap.php')) {
-    require $root . '/config/bootstrap.php';
+    include $root . '/config/bootstrap.php';
     return;
 }
 require $root . '/vendor/cakephp/cakephp/tests/bootstrap.php';

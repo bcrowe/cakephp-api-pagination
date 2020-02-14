@@ -33,7 +33,7 @@ class ApiPaginationComponent extends Component
      * Injects the pagination info into the response if the current request is a
      * JSON or XML request with pagination.
      *
-     * @param \Cake\Event\Event $event The Controller.beforeRender event.
+     * @param  \Cake\Event\Event $event The Controller.beforeRender event.
      * @return void
      */
     public function beforeRender(Event $event)
@@ -98,8 +98,8 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if ($this->getController()->getRequest()->getAttribute('paging') &&
-            $this->getController()->getRequest()->is(['json', 'xml'])
+        if ($this->getController()->getRequest()->getAttribute('paging') 
+            && $this->getController()->getRequest()->is(['json', 'xml'])
         ) {
             return true;
         }

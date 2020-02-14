@@ -107,7 +107,8 @@ class ApiPaginationComponentTest extends TestCase
             $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
-        $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
+        $apiPaginationComponent = new ApiPaginationComponent(
+            $this->controller->components(), [
             'visible' => [
                 'page',
                 'current',
@@ -116,7 +117,8 @@ class ApiPaginationComponentTest extends TestCase
                 'nextPage',
                 'pageCount'
             ]
-        ]);
+            ]
+        );
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
@@ -144,13 +146,15 @@ class ApiPaginationComponentTest extends TestCase
             $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
-        $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
+        $apiPaginationComponent = new ApiPaginationComponent(
+            $this->controller->components(), [
             'aliases' => [
                 'page' => 'curPage',
                 'current' => 'currentCount',
                 'count' => 'totalCount',
             ]
-        ]);
+            ]
+        );
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
@@ -190,9 +194,11 @@ class ApiPaginationComponentTest extends TestCase
             $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
-        $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
+        $apiPaginationComponent = new ApiPaginationComponent(
+            $this->controller->components(), [
             'key' => 'paging'
-        ]);
+            ]
+        );
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
@@ -232,7 +238,8 @@ class ApiPaginationComponentTest extends TestCase
             $this->controller->getRequest()->withEnv('HTTP_ACCEPT', 'application/json')
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
-        $apiPaginationComponent = new ApiPaginationComponent($this->controller->components(), [
+        $apiPaginationComponent = new ApiPaginationComponent(
+            $this->controller->components(), [
             'key' => 'fun',
             'aliases' => [
                 'page' => 'currentPage',
@@ -246,7 +253,8 @@ class ApiPaginationComponentTest extends TestCase
                 'prevPage',
                 'nextPage'
             ]
-        ]);
+            ]
+        );
         $event = new Event('Controller.beforeRender', $this->controller);
         $apiPaginationComponent->beforeRender($event);
 
