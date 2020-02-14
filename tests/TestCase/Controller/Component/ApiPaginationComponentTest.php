@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace BryanCrowe\ApiPagination\Test;
 
 use BryanCrowe\ApiPagination\Controller\Component\ApiPaginationComponent;
 use BryanCrowe\ApiPagination\TestApp\Controller\ArticlesController;
 use Cake\Event\Event;
 use Cake\Http\ServerRequest as Request;
-use Cake\Http\Response;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -108,15 +109,16 @@ class ApiPaginationComponentTest extends TestCase
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent(
-            $this->controller->components(), [
+            $this->controller->components(),
+            [
             'visible' => [
                 'page',
                 'current',
                 'count',
                 'prevPage',
                 'nextPage',
-                'pageCount'
-            ]
+                'pageCount',
+            ],
             ]
         );
         $event = new Event('Controller.beforeRender', $this->controller);
@@ -147,12 +149,13 @@ class ApiPaginationComponentTest extends TestCase
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent(
-            $this->controller->components(), [
+            $this->controller->components(),
+            [
             'aliases' => [
                 'page' => 'curPage',
                 'current' => 'currentCount',
                 'count' => 'totalCount',
-            ]
+            ],
             ]
         );
         $event = new Event('Controller.beforeRender', $this->controller);
@@ -195,8 +198,9 @@ class ApiPaginationComponentTest extends TestCase
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent(
-            $this->controller->components(), [
-            'key' => 'paging'
+            $this->controller->components(),
+            [
+            'key' => 'paging',
             ]
         );
         $event = new Event('Controller.beforeRender', $this->controller);
@@ -239,20 +243,21 @@ class ApiPaginationComponentTest extends TestCase
         );
         $this->controller->set('data', $this->controller->paginate($this->Articles));
         $apiPaginationComponent = new ApiPaginationComponent(
-            $this->controller->components(), [
+            $this->controller->components(),
+            [
             'key' => 'fun',
             'aliases' => [
                 'page' => 'currentPage',
                 'count' => 'totalCount',
-                'limit' => 'unusedAlias'
+                'limit' => 'unusedAlias',
             ],
             'visible' => [
                 'currentPage',
                 'totalCount',
                 'limit',
                 'prevPage',
-                'nextPage'
-            ]
+                'nextPage',
+            ],
             ]
         );
         $event = new Event('Controller.beforeRender', $this->controller);

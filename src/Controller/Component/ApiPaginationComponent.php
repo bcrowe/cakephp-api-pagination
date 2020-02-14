@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace BryanCrowe\ApiPagination\Controller\Component;
 
 use Cake\Controller\Component;
@@ -19,7 +21,7 @@ class ApiPaginationComponent extends Component
     protected $_defaultConfig = [
         'key' => 'pagination',
         'aliases' => [],
-        'visible' => []
+        'visible' => [],
     ];
 
     /**
@@ -98,7 +100,8 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if ($this->getController()->getRequest()->getAttribute('paging') 
+        if (
+            $this->getController()->getRequest()->getAttribute('paging')
             && $this->getController()->getRequest()->is(['json', 'xml'])
         ) {
             return true;
