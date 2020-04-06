@@ -96,7 +96,7 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if ($this->request->getParam('paging') &&
+        if ($this->request->getAttribute('paging') &&
             $this->request->is(['json', 'xml'])
         ) {
             return true;
