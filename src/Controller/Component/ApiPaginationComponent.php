@@ -43,7 +43,7 @@ class ApiPaginationComponent extends Component
         }
 
         $subject = $event->getSubject();
-        $this->pagingInfo = $this->request->getParam('paging')[$subject->getName()];
+        $this->pagingInfo = $this->request->getAttribute('paging')[$subject->getName()];
         $config = $this->getConfig();
 
         if (!empty($config['aliases'])) {
