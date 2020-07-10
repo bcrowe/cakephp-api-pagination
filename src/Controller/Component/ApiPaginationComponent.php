@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace BryanCrowe\ApiPagination\Controller\Component;
 
 use Cake\Controller\Component;
@@ -19,7 +21,7 @@ class ApiPaginationComponent extends Component
     protected $_defaultConfig = [
         'key' => 'pagination',
         'aliases' => [],
-        'visible' => []
+        'visible' => [],
     ];
 
     /**
@@ -33,7 +35,7 @@ class ApiPaginationComponent extends Component
      * Injects the pagination info into the response if the current request is a
      * JSON or XML request with pagination.
      *
-     * @param \Cake\Event\Event $event The Controller.beforeRender event.
+     * @param  \Cake\Event\Event $event The Controller.beforeRender event.
      * @return void
      */
     public function beforeRender(Event $event)
@@ -43,7 +45,7 @@ class ApiPaginationComponent extends Component
         }
 
         $subject = $event->getSubject();
-        $this->pagingInfo = $this->request->getParam('paging')[$subject->getName()];
+        $this->pagingInfo = $this->getController()->getRequest()->getAttribute('paging')[$subject->getName()];
         $config = $this->getConfig();
 
         if (!empty($config['aliases'])) {
@@ -55,7 +57,9 @@ class ApiPaginationComponent extends Component
         }
 
         $subject->set($config['key'], $this->pagingInfo);
-        $subject->viewVars['_serialize'][] = $config['key'];
+        $data = $subject->viewBuilder()->getVar('_serialize') ?? [];
+        $data[] = $config['key'];
+        $subject->set('_serialize', $data);
     }
 
     /**
@@ -96,8 +100,9 @@ class ApiPaginationComponent extends Component
      */
     protected function isPaginatedApiRequest()
     {
-        if ($this->request->getParam('paging') &&
-            $this->request->is(['json', 'xml'])
+        if (
+            $this->getController()->getRequest()->getAttribute('paging')
+            && $this->getController()->getRequest()->is(['json', 'xml'])
         ) {
             return true;
         }

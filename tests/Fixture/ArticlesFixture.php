@@ -11,7 +11,7 @@ class ArticlesFixture extends TestFixture
         'id' => ['type' => 'integer'],
         'title' => ['type' => 'string', 'null' => false],
         'body' => 'text',
-        '_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]]
+        '_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
     ];
 
     public $records = [
@@ -37,6 +37,6 @@ class ArticlesFixture extends TestFixture
         ['title' => 'Post #20', 'body' => 'This is the article body.'],
         ['title' => 'Post #21', 'body' => 'This is the article body.'],
         ['title' => 'Post #22', 'body' => 'This is the article body.'],
-        ['title' => 'Post #23', 'body' => 'This is the article body.']
+        ['title' => 'Post #23', 'body' => 'This is the article body.'],
     ];
 }
