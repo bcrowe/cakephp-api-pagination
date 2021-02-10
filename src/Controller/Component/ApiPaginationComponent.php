@@ -57,9 +57,9 @@ class ApiPaginationComponent extends Component
         }
 
         $subject->set($config['key'], $this->pagingInfo);
-        $data = $subject->viewBuilder()->getVar('_serialize') ?? [];
+        $data = $subject->viewBuilder()->getOption('serialize') ?? [];
         $data[] = $config['key'];
-        $subject->set('_serialize', $data);
+        $subject->viewBuilder()->setOption('serialize', $data);
     }
 
     /**
