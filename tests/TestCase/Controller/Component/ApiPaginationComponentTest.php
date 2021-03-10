@@ -29,7 +29,7 @@ class ApiPaginationComponentTest extends TestCase
         $this->request = new Request(['url' => '/articles']);
         $this->response = $this->createMock('Cake\Http\Response');
         $this->controller = new ArticlesController($this->request, $this->response);
-        $this->Articles = TableRegistry::get('BryanCrowe/ApiPagination.Articles', ['table' => 'bryancrowe_articles']);
+        $this->Articles = TableRegistry::getTableLocator()->get('BryanCrowe/ApiPagination.Articles', ['table' => 'bryancrowe_articles']);
         parent::setUp();
     }
 

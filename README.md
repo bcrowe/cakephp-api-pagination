@@ -73,7 +73,7 @@ and will look something like this:
 
 ### Configuring the Pagination Output
 
-ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
+ApiPagination has four keys for configuration: `key`, `aliases`, `visible` and `model`.
 
 * `key` allows you to change the name of the pagination key.
 
@@ -82,6 +82,10 @@ ApiPagination has three keys for configuration: `key`, `aliases`, and `visible`.
 * `visible` allows you to set which pagination keys will be exposed in the
   response. **Note:** Whenever setting a key's visibility, make sure to use the
   aliased name if you've given it one.
+
+* `model` allows you to set the name of the model the pagination is applied on
+  if the controller does not follow CakePHP conventions, e.g. `ArticlesIndexController`.
+  Per default the model is the name of the controller, e.g. `Articles` for `ArticlesController`.
 
 An example using all these configuration keys:
 
@@ -97,7 +101,8 @@ $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination', [
         'resultCount',
         'prevPage',
         'nextPage'
-    ]
+    ],
+    'model' => 'Articles',
 ]);
 ```
 
