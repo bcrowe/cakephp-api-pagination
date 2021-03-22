@@ -45,7 +45,8 @@ class ApiPaginationComponent extends Component
         }
 
         $subject = $event->getSubject();
-        $this->pagingInfo = $this->getController()->getRequest()->getAttribute('paging')[$subject->getName()];
+        $modelName = ucfirst($this->getConfig('model', $subject->getName()));
+        $this->pagingInfo = $this->getController()->getRequest()->getAttribute('paging')[$modelName];
         $config = $this->getConfig();
 
         if (!empty($config['aliases'])) {
