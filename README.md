@@ -18,10 +18,19 @@ Via Composer
 $ composer require bcrowe/cakephp-api-pagination
 ```
 
-Load the plugin in your application's `bootstrap.php` file:
+Load the plugin by adding `$this->addPlugin('BryanCrowe/ApiPagination');` to the `bootsrap` method in your project’s `src/Application.php`:
 
 ``` php
-Plugin::load('BryanCrowe/ApiPagination');
+public function bootstrap(): void
+{
+    parent::bootstrap();
+    
+    // ... bootstrap code ...
+
+    // load more plugins here
+    
+    $this->addPlugin('BryanCrowe/ApiPagination');
+}
 ```
 
 ## Usage
@@ -40,10 +49,9 @@ Then, go ahead and set your paginated view variable like so:
 
 ``` php
 $this->set('articles', $this->paginate($this->Articles));
-$this->set('_serialize', ['articles']);
+$this->viewBuilder()->setOption('serialize', ['articles']);
 ```
-
-**Note:** It is important that your `_serialize` variable is an array, e.g.
+**Note:** It is important that your `serialize` option is an array, e.g.
 `['articles']`, so that your pagination information can be set under its own
 pagination key.
 
@@ -165,4 +173,4 @@ information.
 [link-downloads]: https://packagist.org/packages/bcrowe/cakephp-api-pagination
 [link-author]: https://github.com/bcrowe
 [link-contributors]: ../../contributors
-[link-dataviews]: http://book.cakephp.org/3.0/en/views/json-and-xml-views.html#enabling-data-views-in-your-application
+[link-dataviews]: https://book.cakephp.org/4/en/views/json-and-xml-views.html#enabling-data-views-in-your-application
