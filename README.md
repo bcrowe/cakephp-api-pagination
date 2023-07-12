@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-github]][link-github]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -161,13 +161,13 @@ information.
 
 [ico-version]: https://img.shields.io/packagist/v/bcrowe/cakephp-api-pagination.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/bcrowe/cakephp-api-pagination/master.svg?style=flat-square
+[ico-github]: https://github.com/bcrowe/cakephp-api-pagination/workflows/CI/badge.svg
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/bcrowe/cakephp-api-pagination.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/bcrowe/cakephp-api-pagination.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/bcrowe/cakephp-api-pagination.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/bcrowe/cakephp-api-pagination
-[link-travis]: https://travis-ci.org/bcrowe/cakephp-api-pagination
+[link-github]: https://github.com/bcrowe/cakephp-api-pagination/actions
 [link-scrutinizer]: https://scrutinizer-ci.com/g/bcrowe/cakephp-api-pagination/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/bcrowe/cakephp-api-pagination
 [link-downloads]: https://packagist.org/packages/bcrowe/cakephp-api-pagination
