@@ -7,8 +7,10 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is a simple component for CakePHP 4 which injects pagination information
+This is a simple component for CakePHP 4.2+ which injects pagination information
 from CakePHP's Paginator into serialized JsonView and XmlView responses.
+
+See `1.x` and `2.x` releases and branches of this plugin for support of previous versions of CakePHP before `4.2`.
 
 ## Install
 
