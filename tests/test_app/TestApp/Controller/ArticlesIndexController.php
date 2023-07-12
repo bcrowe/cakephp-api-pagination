@@ -10,6 +10,5 @@ class ArticlesIndexController extends Controller
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadComponent('Paginator');
     }
 }
