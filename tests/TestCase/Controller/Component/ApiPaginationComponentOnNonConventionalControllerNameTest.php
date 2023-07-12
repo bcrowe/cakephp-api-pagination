@@ -74,11 +74,10 @@ class ApiPaginationComponentOnNonConventionalControllerNameTest extends TestCase
     public function dataForTestVariousModelValueOnNonConventionalController(): array
     {
         return [
-
-            [[], null],
+            [[], []],
             [['model' => 'Articles'], $this->getDefaultPagination()],
             [['model' => 'articles'], $this->getDefaultPagination()],
-            [['model' => 'NonExistingModel'], null],
+            [['model' => 'NonExistingModel'], []],
         ];
     }
 
